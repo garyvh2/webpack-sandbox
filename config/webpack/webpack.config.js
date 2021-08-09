@@ -7,14 +7,17 @@ module.exports = {
       '@config': path.resolve(__dirname, '../')
     },
   },
-  output: {
-    assetModuleFilename: '[name].[ext]'
-  },
   module: {
     rules: [
       {
-        test: /config.json/,
-        type: 'asset/resource'
+        test: /\.json$/,
+        include: [
+          path.resolve(__dirname, '../settings')
+        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'settings/[name][ext]'
+        }
       }
     ]
   }
